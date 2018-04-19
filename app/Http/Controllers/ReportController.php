@@ -19,7 +19,7 @@ class ReportController extends Controller
         $tasks = Task::daily();
 
         foreach ($tasks as $i => $task) {
-            $line = ($i + 1) . ". " . $task->content . "\n";
+            $line = ($i + 1) . ". " . $task->product->name . ': ' . $task->content . "\n";
             $report .= $line;
         }
 

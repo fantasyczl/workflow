@@ -27,7 +27,6 @@ class HomeController extends Controller
     {
         $products = Product::all();
         $tasks = Task::where('created_at', '>=', date('Y-m-d 00:00:00'))->get();
-        $tasks = Task::all();
 
         return view('home', compact('products', 'tasks'));
     }
