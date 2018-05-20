@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Product;
 
 class TaskController extends Controller
 {
@@ -65,7 +66,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -76,7 +78,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::all();
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task', 'products'));
     }
 
     /**
@@ -88,7 +92,21 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'content' => 'required',
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->product_id = $request->product_id;
+        $task->content = $request->content;
+        $is = $task->save();
+
+        if ($is) {
+            return redirect('/home');
+        } else {
+            echo "Error:\n";
+        }
     }
 
     /**

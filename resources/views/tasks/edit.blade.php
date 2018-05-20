@@ -17,11 +17,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
-
-                    <span style="margin-left: 525px; text-align: right;">
-                        <a href="/reports/daily">Daily Report</a>
-                    </span>
+                    Task: {{$task->id}}
                 </div>
 
                 <div class="card-body">
@@ -32,9 +28,9 @@
                     @endif
 
                     <div class="add-task">
-                        <div>Add Task</div>
                         <div class="form">
-                            <form action="/tasks" method="POST">
+                            <form action="/tasks/{{$task->id}}" method="POST">
+                                @method('PUT')
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-from-label text-md-right" for="">Product</label>
@@ -42,57 +38,26 @@
                                         <select id="product_id" name="product_id" class="form-control{{ $errors->has('product_id') ? ' is-invalid' : '' }}">
                                             <option value="">-</option>
                                             @foreach ($products as $product)
-                                                <option value="{{$product->id}}">{{$product->name}}</option>
+                                                <option value="{{$product->id}}" {{ $task->product_id == $product->id ? 'selected' : '' }}>{{$product->name}}</option>
                                             @endforeach
                                         </select>
-
-                                        <div>
-                                            <a href="/products/create">Add Product</a>
-                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-from-label text-md-right" for="">Content</label>
-                                    <textarea id="content" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" style="width: 60%;" cols="20" rows="3"></textarea>
+                                    <textarea id="content" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" style="width: 60%;" cols="20" rows="3">{{$task->content}}</textarea>
                                 </div>
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Add') }}
+                                            {{ __('Update') }}
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">Task List</div>
-                <div class="card-body">
-                    <div class="task-list">
-                        <table>
-                            @foreach ($tasks as $i => $task)
-                            <tr>
-                                <td class="task-td">{{ ($i + 1) }}</td>
-                                <td class="task-td">
-                                    <a href="/products/{{$task->product_id}}">
-                                        {{ $task->product->name }}
-                                    </a>
-                                </td>
-                                <td class="task-td">{{$task->content}}</td>
-                                <td class="task-td">{{$task->created_at}}</td>
-                                <td class="task-td">
-                                    <a href="/tasks/{{$task->id}}/edit">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </table>
                     </div>
                 </div>
             </div>
