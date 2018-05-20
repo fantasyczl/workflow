@@ -5,7 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Product</div>
+                <div class="card-header">
+                    Product: {{ $product->id }}
+
+                    <span style="margin-left: 590px; text-align: right;">
+                        <a href="/products/{{$product->id}}/edit">Edit</a>
+                    </span>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))

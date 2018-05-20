@@ -74,7 +74,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('products/edit', compact('product'));
     }
 
     /**
@@ -86,7 +88,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $count = Product::where('name', $request->name)->where('id', '<>', $id)->count();
+        if ($count > 0) {
+            return back()->withInput();
+        }
+
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        $is = $product->save();
+
+        if ($is) {
+            return redirect('/home');
+        } else {
+            echo "Update Error";
+        }
     }
 
     /**
