@@ -42,12 +42,24 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
+            'product_name' => 'required|string',
             'content' => 'required',
         ]);
+        $productName = trim($request->product_name);
+
+        $product = Product::where('name', $productName)->first();
+        if (is_null($product)) {
+            $product = new Product();
+            $product->name = $productName;
+            $product->order = 0;
+            if (! $product->save()) {
+                return response("create product error");
+            }
+        }
+
 
         $task = new Task();
-        $task->product_id = $request->product_id;
+        $task->product_id = $product->id;
         $task->content = $request->content;
         $is = $task->save();
 

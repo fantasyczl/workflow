@@ -13,3 +13,4 @@ yarn-error.log
 .env
 *.swo
 *.swp
+.DS_Store

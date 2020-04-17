@@ -37,23 +37,14 @@
                             <form action="/tasks" method="POST">
                                 @csrf
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-from-label text-md-right" for="">Product</label>
+                                    <label class="col-sm-4 col-from-label text-md-right" for="">项目</label>
                                     <div class="col-md-6">
-                                        <select id="product_id" name="product_id" class="form-control{{ $errors->has('product_id') ? ' is-invalid' : '' }}">
-                                            <option value="">-</option>
-                                            @foreach ($products as $product)
-                                                <option value="{{$product->id}}">{{$product->name}}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <div>
-                                            <a href="/products/create">Add Product</a>
-                                        </div>
+                                        <input id="product_name" name="product_name" class="form-control{{ $errors->has('product_name')  ? ' is-invalid' : '' }}" style=""/>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-from-label text-md-right" for="">Content</label>
+                                    <label class="col-sm-4 col-from-label text-md-right" for="">工作内容</label>
                                     <textarea id="content" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" style="width: 60%;" cols="20" rows="3"></textarea>
                                 </div>
 
