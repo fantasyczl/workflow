@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="/products">Products</a></li>
+                        <li><a class="nav-link" href="/tasks">Tasks</a></li>
                         <li><a class="nav-link" href="/reports/weeky">Weeky</a></li>
                     </ul>
 

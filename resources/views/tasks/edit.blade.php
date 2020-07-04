@@ -45,6 +45,13 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label class="col-sm-4 col-from-label text-md-right" for="">Title</label>
+                                    <div class="col-md-6">
+                                        <input id="product_name" name="title" class="form-control{{ $errors->has('title')  ? ' is-invalid' : '' }}" style="" value="{{$task->title}}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label class="col-sm-4 col-from-label text-md-right" for="">Content</label>
                                     <textarea id="content" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" style="width: 60%;" cols="20" rows="3">{{$task->content}}</textarea>
                                 </div>
