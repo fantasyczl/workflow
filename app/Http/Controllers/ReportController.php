@@ -59,6 +59,8 @@ class ReportController extends Controller
         //    
         //}
 
-        return view('reports.weeky', compact('result'));
+        $now = date('Y-m-d H:i:s');
+
+        return view('reports.weeky', compact('result', 'startDate', 'now'));
     }
 }

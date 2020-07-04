@@ -30,6 +30,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="add-task">
                         <div>Add Task</div>
@@ -40,6 +49,12 @@
                                     <label class="col-sm-4 col-from-label text-md-right" for="">项目</label>
                                     <div class="col-md-6">
                                         <input id="product_name" name="product_name" class="form-control{{ $errors->has('product_name')  ? ' is-invalid' : '' }}" style=""/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-from-label text-md-right" for="">Title</label>
+                                    <div class="col-md-6">
+                                        <input id="title" name="title" class="form-control{{ $errors->has('title')  ? ' is-invalid' : '' }}" style=""/>
                                     </div>
                                 </div>
 
@@ -70,10 +85,15 @@
                             <tr>
                                 <td class="task-td">{{ ($i + 1) }}</td>
                                 <td class="task-td">
+                                    @if ($task->product_id > 0)
                                     <a href="/products/{{$task->product_id}}">
                                         {{ $task->product->name }}
                                     </a>
+                                    @else
+                                        -
+                                    @endif
                                 </td>
+                                <td class="task-td">{{$task->title}}</td>
                                 <td class="task-td">{{$task->content}}</td>
                                 <td class="task-td">{{$task->created_at}}</td>
                                 <td class="task-td">

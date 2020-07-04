@@ -26,27 +26,31 @@
                     @endif
 
                     <div class="report">
+                        <div class="row" style="margin-bottom: 2em;">
+                            <div class="col-sm-6">
+                            From: {{$startDate}}
+                            </div>
+                            <div class="col-sm-6">
+                            To: {{$now}}
+                            </div>
+                        </div>
+
                         <div class="render">
                             <table>
                                 <tr>
                                     <th>项目</th>
-                                    <th>排期</th>
-                                    <th>本周工作</th>
-                                    <th>下周工作</th>
-                                    <th>问题与风险</th>
+                                    <th>工作</th>
                                 </tr>
                                 @foreach ($result as $line)
                                 <tr>
-                                    <td>{{$line[0]->product->name}}</td>
-                                    <td></td>
+                                    <td>{{$line[0]->product_id > 0 ? $line[0]->product->name : ''}}</td>
                                     <td>
                                         @foreach ($line as $i => $task)
-                                            {{ ($i+1) }}. 
+                                            {{ ($i+1) }}.
+                                            {{ $task->title }}
                                             {{$task->content}} <br>
                                         @endforeach
                                     </td>
-                                    <td></td>
-                                    <td></td>
                                 </tr>
                                 @endforeach
                             </table>
