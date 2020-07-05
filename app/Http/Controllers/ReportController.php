@@ -42,23 +42,6 @@ class ReportController extends Controller
             }
         }
 
-        //$reports = [];
-        //foreach ($result as $productId => $items) {
-        //    $product = Product::find($productId);
-
-        //    $productTasks = [];
-        //    foreach ($items as $i => $item) {
-        //        $subTask = ($i + 1) . ". " . $item['content'] . "<br>";
-        //    }
-
-        //    $line = [
-        //        $product->name,
-        //        '',
-
-        //    ];
-        //    
-        //}
-
         $now = date('Y-m-d H:i:s');
 
         return view('reports.weeky', compact('result', 'startDate', 'now'));

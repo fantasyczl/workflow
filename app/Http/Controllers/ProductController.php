@@ -45,6 +45,11 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
         ]);
 
+        $request->name = trim($request->name);
+        if (empty($request->name)) {
+            return Redirect::back()->withErrors(['msg', 'name is empty']);
+        }
+
         $product = new Product();
         $product->name = $request->name;
         $product->order = 0;

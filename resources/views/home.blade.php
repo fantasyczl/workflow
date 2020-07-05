@@ -48,7 +48,16 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-from-label text-md-right" for="">项目</label>
                                     <div class="col-md-6">
-                                        <input id="product_name" name="product_name" class="form-control{{ $errors->has('product_name')  ? ' is-invalid' : '' }}" style=""/>
+                                        <select id="product_id" name="product_id" class="form-control{{ $errors->has('product_id') ? ' is-invalid' : '' }}">
+                                            <option value="">-</option>
+                                            @foreach ($products as $product)
+                                                <option value="{{$product->id}}">{{$product->name}}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <div>
+                                            <a href="/products/create">Add Product</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -77,7 +86,7 @@
             </div>
 
             <div class="card">
-                <div class="card-header">Task List</div>
+                <div class="card-header">Today Task List</div>
                 <div class="card-body">
                     <div class="task-list">
                         <table>
