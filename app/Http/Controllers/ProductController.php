@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->paginate(15);
         return view('products/index', compact('products'));
     }
 
@@ -107,9 +107,9 @@ class ProductController extends Controller
         $is = $product->save();
 
         if ($is) {
-            return redirect('/home');
+            return redirect("/products/{$id}");
         } else {
-            echo "Update Error";
+            return back()->withErrors("Update Error");
         }
     }
 

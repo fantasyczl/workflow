@@ -20,12 +20,7 @@
                     <div class="card-header">Tasks</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
+                        @include ('plugins.errors')
 
                         <div class="task-list">
                             <table>
