@@ -10,11 +10,7 @@
                 </div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    @include ('plugins.errors')
 
                     <div class="report">
                         <div class="form-group row">
