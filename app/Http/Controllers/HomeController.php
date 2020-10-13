@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->get();
         $tasks = Task::where('created_at', '>=', date('Y-m-d 00:00:00'))->get();
 
         return view('home', compact('products', 'tasks'));
