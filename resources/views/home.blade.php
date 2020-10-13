@@ -91,7 +91,7 @@
                                 </td>
                                 <td class="task-td">{{$task->title}}</td>
                                 <td class="task-td">{{$task->content}}</td>
-                                <td class="task-td">{{$task->created_at}}</td>
+                                <td class="task-td">{{(new DateTimeImmutable($task->created_at, new DateTimeZone('asia/Shanghai')))->format('Y-m-d H:i:s')}}</td>
                                 <td class="task-td">
                                     <a href="/tasks/{{$task->id}}/edit">
                                         Edit
