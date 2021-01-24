@@ -67,8 +67,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+        $statusMap = Product::STATUS_MAP;
 
-        return view('products/show', compact('product'));
+        return view('products/show', compact('product', 'statusMap'));
     }
 
     /**
@@ -80,8 +81,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-
-        return view('products/edit', compact('product'));
+        $statusMap = Product::STATUS_MAP;
+        return view('products/edit', compact('product', 'statusMap'));
     }
 
     /**
@@ -102,8 +103,17 @@ class ProductController extends Controller
             return back()->withInput();
         }
 
+        $request->name = trim($request->name);
+        if (empty($request->name)) {
+            return Redirect::back()->withErrors(['msg', 'name is empty']);
+        }
+
         $product = Product::findOrFail($id);
         $product->name = $request->name;
+        if ($request->has('status')) {
+            $product->status = $request->get('status');
+        }
+
         $is = $product->save();
 
         if ($is) {

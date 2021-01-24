@@ -29,6 +29,13 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-sm-4 col-from-label text-md-right" for="">Status :</label>
+                            <div class="col-md-6">
+                                {{ $statusMap[$product->status] ?? $product->status }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="col-sm-4 col-from-label text-md-right" for="">Created At :</label>
                             <div class="col-md-6">
                                 {{ $product->created_at }}
