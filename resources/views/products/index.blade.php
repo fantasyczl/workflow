@@ -29,6 +29,7 @@
                                     <tr>
                                         <td class="table-td">{{$product->id}}</td>
                                         <td class="table-td">{{$product->name}}</td>
+                                        <td class="table-td">{{$statusMap[$product->status] ?? '-'}}</td>
                                         <td class="table-td">{{$product->created_at}}</td>
                                         <td class="table-td">
                                             <a href="/products/{{$product->id}}/edit">
