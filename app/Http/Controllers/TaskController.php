@@ -51,18 +51,23 @@ class TaskController extends Controller
 
         $product = Product::where('name', $productName)->first();
         if (is_null($product)) {
-            $product = new Product();
-            $product->name = $productName;
-            $product->order = 0;
-            if (! $product->save()) {
-                return response("create product error");
-            }
+            //$product = new Product();
+            //$product->name = $productName;
+            //$product->order = 0;
+            //if (! $product->save()) {
+            //    return response("create product error");
+            //}
+            return response("product can not found by name");
         }
 
 
         $product = null;
         if (!is_null($request->product_id)) {
             $product = Product::findOrFail(intval($request->product_id));
+        }
+
+        if (is_null($product)) {
+            return response("product can not found by product_id:".$request->product_id);
         }
 
         $task = new Task();
