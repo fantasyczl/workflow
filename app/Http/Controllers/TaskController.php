@@ -47,19 +47,21 @@ class TaskController extends Controller
             'title'      => 'required|string',
             'content'    => 'nullable|string',
         ]);
-        $productName = trim($request->product_name);
+        //$productName = trim($request->product_name);
+        //if (empty($productName)) {
+        //    return response("product_name is empty");
+        //}
 
-        $product = Product::where('name', $productName)->first();
-        if (is_null($product)) {
-            //$product = new Product();
-            //$product->name = $productName;
-            //$product->order = 0;
-            //if (! $product->save()) {
-            //    return response("create product error");
-            //}
-            return response("product can not found by name:" . json_encode($productName));
-        }
-
+        //$product = Product::where('name', $productName)->first();
+        //if (is_null($product)) {
+        //    //$product = new Product();
+        //    //$product->name = $productName;
+        //    //$product->order = 0;
+        //    //if (! $product->save()) {
+        //    //    return response("create product error");
+        //    //}
+        //    return response("product can not found by name:" . json_encode($productName));
+        //}
 
         $product = null;
         if (!is_null($request->product_id)) {
