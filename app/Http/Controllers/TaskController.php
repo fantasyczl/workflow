@@ -57,7 +57,7 @@ class TaskController extends Controller
             //if (! $product->save()) {
             //    return response("create product error");
             //}
-            return response("product can not found by name");
+            return response("product can not found by name:" . json_encode($productName));
         }
 
 
