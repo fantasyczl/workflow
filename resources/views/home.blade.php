@@ -90,7 +90,7 @@
                                     @endif
                                 </td>
                                 <td class="task-td">{{$task->title}}</td>
-                                <td class="task-td">{{ nl2br($task->content) }}</td>
+                                <td class="task-td">{!! nl2br($task->content) !!}</td>
                                 <td class="task-td">{{ \App\Utils\DateTime::getLocalTimeFromUTC($task->created_at) }}</td>
                                 <td class="task-td">
                                     <a href="/tasks/{{$task->id}}/edit">
