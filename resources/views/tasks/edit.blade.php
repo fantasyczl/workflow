@@ -53,7 +53,8 @@
 
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-from-label text-md-right" for="">Content</label>
-                                    <textarea id="content" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" style="width: 60%;" cols="20" rows="3">{{$task->content}}</textarea>
+                                    <textarea id="content" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"
+                                              style="width: 60%;" cols="20" rows="15">{{$task->content}}</textarea>
                                 </div>
 
                                 <div class="form-group row mb-0">
