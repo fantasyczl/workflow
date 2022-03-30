@@ -7,10 +7,11 @@ services:
     volumes:
       - ./:/code
       - ./site.conf:/etc/nginx/conf.d/default.conf
+      - ./log:/var/log/nginx/
     links:
       - php
 
   php:
-    image: php-fpm-lavaral:1
+    image: php-fpm-lavaral:2
     volumes:
       - ./:/code

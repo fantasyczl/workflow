@@ -48,7 +48,10 @@
                                         @foreach ($line as $i => $task)
                                             {{ ($i+1) }}.
                                             {{ $task->title }}
-                                            {{$task->content}} <br>
+                                            <br>
+                                            <div style="margin-left: 2em;">
+                                                {!! nl2br($task->content) !!}
+                                            </div>
                                         @endforeach
                                     </td>
                                 </tr>
